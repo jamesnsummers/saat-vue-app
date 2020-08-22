@@ -4,7 +4,7 @@
       <div class="image-container">
         <img 
         v-for="Mattress in Mattresses" 
-        :key="Mattress.name" :src="'../assets/' + Mattress.imageFileName" 
+        :key="Mattress.name" :src="require('../assets/' + Mattress.imageFileName)" 
         :class="Mattress.imageFileName.split('.jpg').splice(0, 1).join('')">
       </div>
     </div>
@@ -81,6 +81,9 @@
         selectedItemReviewRating: 4.9,
         // set json data to useable vue data object
         Mattresses: Object.values(mattresses).find(mattresses => mattresses.name === this.name),
+        images: {
+          classic: require('../assets/classic-carousel.jpg')
+        }
       }
     }
   }
