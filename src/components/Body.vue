@@ -18,7 +18,7 @@
           :class="{ 'selected': Mattress.name === 'Saatva Classic' }"
           :key="Mattress.name" 
           @click="updateSelectedButton"
-          v-on:click="showSelectedMattressAndInfo(Mattress);">
+          v-on:click="showSelectedMattressAndInfo(Mattress)">
             {{ Mattress.name }}
           </button>
         </div>
@@ -31,7 +31,7 @@
         </div>
       </div>
       <div class="add-to-cart-container">
-        <button class="add-to-cart" v-on:click="showCartCount">Add to Cart</button>
+        <button class="add-to-cart" v-on:click="updateCartCount">Add to Cart</button>
       </div>
     </div>
   </div>
@@ -44,6 +44,7 @@
     name: 'Body',
     methods: {
       updateSelectedButton(e) {
+        // loops through mattress buttons and checks for which is clicked and if its not already selected, adds the selected class
         const buttonNodes = this.$el.querySelectorAll('.mattress-types-container button')
         const thisButton = e.target
         for (let i = 0; i < buttonNodes.length; i++) {
@@ -55,27 +56,30 @@
         }
       },
       showSelectedMattressAndInfo: function(Mattress) {
+        // set mattress details to match which button the user clicks
         this.selectedItemName = Mattress.name
         this.selectedItemPrice = '$' + Mattress.price
         this.selectedItemReviewRating = Mattress.reviewRating
-        const mattressType = Mattress.imageFileName.split('.jpg').splice(0, 1).join('');
-        this.$el.querySelector('.carousel').className = '';
+        const mattressType = Mattress.imageFileName.split('.jpg').splice(0, 1).join('')
+        this.$el.querySelector('.carousel').className = ''
         this.$el.querySelector('div:first-child').className = mattressType + ' carousel'
       },
-      showCartCount: function() {
-        let counter = 0;
-        const cartCountNode = document.querySelector('.nav-cart-count');
-        counter = ++counter;
-        const cartCountText = Number(cartCountNode.innerText);
-        cartCountNode.innerText = cartCountText + counter;
+      updateCartCount: function() {
+        // increment counter by 1 on each click of Add To Cart CTA -- counter resets on page refresh
+        let counter = 0
+        const cartCountNode = document.querySelector('.nav-cart-count')
+        counter = ++counter
+        const cartCountText = Number(cartCountNode.innerText)
+        cartCountNode.innerText = cartCountText + counter
       }
     },
     data() {
       return {
+        // set initial data to first mattress in dataset -- shows on page load
         selectedItemName: 'Saatva Classic',
         selectedItemPrice: '$' + 999,
         selectedItemReviewRating: 4.9,
-        selectedItemImageSrc: null,
+        // set json data to useable vue data object
         Mattresses: Object.values(mattresses).find(mattresses => mattresses.name === this.name),
       }
     }
@@ -139,7 +143,6 @@
       background-color: #f6f5f3;
       font-family: 'Questrial', sans-serif;
       width: 40%;
-      z-index: 1;
       h2 {
         font-family: 'Source Serif Pro', serif;
         font-size: 28px;
@@ -173,7 +176,7 @@
             white-space: nowrap;
             &.selected {
               background-color: #a6a19a;
-              color: #d6d4d1;
+              color: #ffffff;
             }
             &:first-child {
               border-right: none;
@@ -222,6 +225,7 @@
       }
     }
   }
+  /* Tablet Styles */
   @media screen and (max-width: 1024px) {
     .body-content {
       display: block;
@@ -234,6 +238,7 @@
       }
     }
   }
+  /* Mobile Styles */
   @media screen and (max-width: 600px) {
     .body-content {
       div.carousel {
@@ -245,6 +250,23 @@
             object-position: center;
             width: 375px;
           }
+        }
+      }
+      div.interactive-area {
+        h2,
+        div.mattress-types-container > p.select-mattress-type {
+          text-align: center;
+        }
+        div.mattress-types-container {
+          p.select-mattress-type,
+          div.selector-buttons-container,
+          div.selected-mattress-info,
+          div.selected-mattress-review {
+            width: 90%;
+          }
+        }
+        div.add-to-cart-container {
+          width: 90%;
         }
       }
     }
