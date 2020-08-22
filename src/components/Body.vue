@@ -97,7 +97,6 @@
       margin-top: 20px;
       overflow: hidden;
       width: 630px;
-      z-index: 0;
       .image-container {
         display: inline-flex;
         position: relative;
@@ -142,7 +141,7 @@
     .interactive-area {
       background-color: #f6f5f3;
       font-family: 'Questrial', sans-serif;
-      width: 40%;
+      width: 50%;
       h2 {
         font-family: 'Source Serif Pro', serif;
         font-size: 28px;
@@ -161,8 +160,8 @@
           width: 80%;
         }
         div.selector-buttons-container {
-          width: 80%;
           margin: 0 auto;
+          width: 80%;
           button {
             background-color: #ffffff;
             border: 1px solid #d2d2d2;
@@ -195,7 +194,7 @@
             margin: 0;
           }
           p.price {
-            opacity: 0.6;
+            opacity: 0.5;
           }
         }
         div.selected-mattress-review {
