@@ -20,16 +20,15 @@ export default {
 
 <style>
   html {
-    background-color: black;
+    /* background-color: black; */
     height: 100vh;
     overflow: hidden;
     width: 100vw;
   }
   body {
-    background-color: #f6f5f3;
+    background-color: gray;
     display: flex;
-    margin: 0 auto;
-    max-width: 1700px;
+    margin: 0;
   }
   svg {
     height: 100%;
@@ -47,10 +46,13 @@ export default {
     text-decoration: none;
   }
   #app {
+    background-color: #f6f5f3;
     color: #000000;
     display: block;
     font-family: 'NHaasGroteskTXStd-55Rg';
     height: 100vh;
+    margin: 0 auto;
+    max-width: 1400px;
     text-align: center;
     width: 100vw;
   }
