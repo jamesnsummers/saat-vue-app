@@ -128,7 +128,7 @@
       }
       &.zen-carousel {
         .image-container {
-          transform: translateX(-1260px);
+          transform: translateX(-200%);
           img:not(.zen-carousel) {
             opacity: 0;
           }
@@ -170,6 +170,7 @@
             outline: none;
             transition: all 150ms ease-in;
             width: 33%;
+            white-space: nowrap;
             &.selected {
               background-color: #a6a19a;
               color: #d6d4d1;
@@ -190,8 +191,12 @@
           p {
             margin: 0;
           }
+          p.price {
+            opacity: 0.6;
+          }
         }
         div.selected-mattress-review {
+          font-style: italic;
           margin: 30px auto;
           text-align: left;
           width: 80%;
@@ -212,6 +217,33 @@
           width: 100%;
           &:active {
             background-color: #ad8c51;
+          }
+        }
+      }
+    }
+  }
+  @media screen and (max-width: 1024px) {
+    .body-content {
+      display: block;
+      margin: 0 auto;
+      div.carousel {
+        width: 100%;
+      }
+      div.interactive-area {
+        width: 100%;
+      }
+    }
+  }
+  @media screen and (max-width: 600px) {
+    .body-content {
+      div.carousel {
+        margin-top: 0;
+        div.image-container {
+          width: 375px;
+          img {
+            object-fit: contain;
+            object-position: center;
+            width: 375px;
           }
         }
       }
