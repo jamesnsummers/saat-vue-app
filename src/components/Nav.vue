@@ -58,9 +58,6 @@ export default {
           right: -6px;
           top: -4px;
           width: 14px;
-          &.hidden {
-            display: none;
-          }
         }
       }
     }
