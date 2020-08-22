@@ -1,6 +1,6 @@
 <template>
   <div class="body-content">
-    <div class="carousel">
+    <div class="classic-carousel carousel">
       <div class="image-container">
         <img 
         v-for="Mattress in Mattresses" 
@@ -15,6 +15,7 @@
         <div class="selector-buttons-container">
           <button 
           v-for="Mattress in Mattresses" 
+          :class="{ 'selected': Mattress.name === 'Saatva Classic' }"
           :key="Mattress.name" 
           @click="updateSelectedButton"
           v-on:click="showSelectedMattressAndInfo(Mattress);">
@@ -30,7 +31,7 @@
         </div>
       </div>
       <div class="add-to-cart-container">
-        <button class="add-to-cart">Add to Cart</button>
+        <button class="add-to-cart" v-on:click="showCartCount">Add to Cart</button>
       </div>
     </div>
   </div>
@@ -61,12 +62,19 @@
         this.$el.querySelector('.carousel').className = '';
         this.$el.querySelector('div:first-child').className = mattressType + ' carousel'
       },
+      showCartCount: function() {
+        let counter = 0;
+        const cartCountNode = document.querySelector('.nav-cart-count');
+        counter = ++counter;
+        const cartCountText = Number(cartCountNode.innerText);
+        cartCountNode.innerText = cartCountText + counter;
+      }
     },
     data() {
       return {
-        selectedItemName: null,
-        selectedItemPrice: null,
-        selectedItemReviewRating: null,
+        selectedItemName: 'Saatva Classic',
+        selectedItemPrice: '$' + 999,
+        selectedItemReviewRating: 4.9,
         selectedItemImageSrc: null,
         Mattresses: Object.values(mattresses).find(mattresses => mattresses.name === this.name),
       }
@@ -79,32 +87,32 @@
     background-color: #f6f5f3;
     display: flex;
     justify-content: space-between;
-    margin: 0 auto;
-    width: 100%;
+    margin: 0 0 0 auto;
+    width: 95%;
     .carousel {
-      border: 1px solid black;
-      height: 320px;
       margin-top: 20px;
-      width: 60%;
+      overflow: hidden;
+      width: 630px;
       z-index: 0;
       .image-container {
         display: inline-flex;
-        height: 20em;
         position: relative;
         transform: translateX(0%);
         transition: all 500ms ease-in;
+        width: 630px;
         img {
-          height: 100%;
+          height: 368px;
+          object-fit: cover;
+          object-position: 0 0;
           opacity: 1;
-          padding-right: 3px;
           position: relative;
-          transition: all 250ms ease-in;
-          width: 100%;
+          transition: all 500ms ease-in;
+          width: 630px;
         }
       }
       &.classic-carousel {
         .image-container {
-          transform: translateX(0%);
+          transform: translateX(0);
           img:not(.classic-carousel) {
             opacity: 0;
           }
@@ -120,7 +128,7 @@
       }
       &.zen-carousel {
         .image-container {
-          transform: translateX(-200%);
+          transform: translateX(-1260px);
           img:not(.zen-carousel) {
             opacity: 0;
           }
