@@ -52,5 +52,6 @@ export default {
     font-family: 'NHaasGroteskTXStd-55Rg';
     height: 100vh;
     text-align: center;
+    width: 100vw;
   }
 </style>
